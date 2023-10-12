@@ -1,26 +1,18 @@
 from nba.NBARepository import NBARepository
+from nba.NBAService import NBAService
+from nba.NBAGraph import NBAGraph
 
 file = open("data/nba_salaries.csv")
 
 nbaRepo = NBARepository(file)
-
-salaries = nbaRepo.find({"select": ["Salary", "Position"]})
-position_count = nbaRepo.countColumn("Position")
-
-position_average_salaries = []
-for pos_count in position_count:
-
-    average_item = {}
-    salary_sum = 0
-
-    for salary in salaries:
-        
-        if salary["Position"] == pos_count["Position"]:
-            salary_sum += int(salary["Salary"])
-
-    average_item = {"Position": pos_count["Position"], "Average": salary_sum // pos_count["count"]}
-    position_average_salaries.append(average_item) 
+nbaService = NBAService(nbaRepo)
+nbaGraph = NBAGraph(nbaService)
 
 
-for row in position_average_salaries:
+
+for row in nbaService.getAverageSalaryForTeam():
     print(row)
+
+# nbaGraph.showAverageSalaryForPosition()
+# nbaGraph.showAverageSalaryForTeam()
+# nbaGraph.showAverageAgeForTeam()
