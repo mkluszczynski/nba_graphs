@@ -16,3 +16,5 @@ for row in nbaService.getAverageSalaryForTeam():
 # nbaGraph.showAverageSalaryForPosition()
 # nbaGraph.showAverageSalaryForTeam()
 # nbaGraph.showAverageAgeForTeam()
+# nbaGraph.showAveragePointsPerGameForTeam()
+# nbaGraph.showSumPointsPerGameForTeam()
