@@ -21,7 +21,22 @@ class NBAService:
     
     def getSumPointPerGameForTeam(self):
         return self.__getSum("Team", "PTS")
-    
+
+    def getSalaryPerMinute(self):
+        player_data = self.nbaRepo.find({"select": ["Player Name", "Salary", "GP", "MP"]})
+
+        salary_per_min_data = []
+        for player in player_data:
+            minutes_played = int(player["GP"]) * float(player["MP"])            
+            salary_per_min = int(player["Salary"]) // minutes_played
+
+            per_min_item = {}
+            per_min_item["Name"] = player["Player Name"]
+            per_min_item["SalaryPerMinute"] = salary_per_min
+            salary_per_min_data.append(per_min_item)
+
+        return sorted(salary_per_min_data, key=lambda data: data["SalaryPerMinute"], reverse=True) 
+
     def __getAverage(self, group_column, average_column):
         average_data = self.nbaRepo.find({"select": [group_column, average_column]})
         group_count = self.nbaRepo.countColumn(group_column)

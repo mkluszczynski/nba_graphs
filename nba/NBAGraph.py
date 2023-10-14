@@ -56,6 +56,14 @@ class NBAGraph:
 
         self.__showHorizontalSubplots(team, sum_pts, "Team", "Sum of points per game", "Sum of points per game for team")
 
+    def showBestSalaryPerMinute(self, top = 20):
+        salary_per_minute = self.nbaService.getSalaryPerMinute()[0:top]
+
+        players = list(map(lambda data: data["Name"], salary_per_minute))
+        salary = list(map(lambda data: data["SalaryPerMinute"], salary_per_minute))
+
+        self.__showHorizontalSubplots(players, salary, "Player", "Salary per minute", "Salary per minute for player")
+
     def __showHorizontalSubplots(self, xdata: list, ydata: list, xlabel: str, ylabel: str, title: str):
 
         fig, ax = plt.subplots()
