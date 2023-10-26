@@ -17,7 +17,8 @@ commands = [
     {"title": "Average age for team", "function": nbaGraph.showAverageAgeForTeam},
     {"title": "Average points per game for team", "function": nbaGraph.showAveragePointsPerGameForTeam},
     {"title": "Sum of points for team", "function": nbaGraph.showSumPointsPerGameForTeam},
-    {"title": "Salary per minute for player", "function": nbaGraph.showBestSalaryPerMinute}
+    {"title": "Salary per minute for player", "function": nbaGraph.showBestSalaryPerMinute},
+    {"title": "Sum of salary by conference", "function": nbaGraph.showSumSalaryForConf}
 ]
 
 while(True):
